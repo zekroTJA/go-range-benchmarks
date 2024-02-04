@@ -1,0 +1,26 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  bench21:
+    cmds:
+      - mkdir results || true
+      - go test -bench=. -count=100 | bench2csv > results/bench_21.csv
+
+  bench22:
+    env:
+      GOEXPERIMENT: loopvar
+    cmds:
+      - mkdir results || true
+      - go test -bench=. -count=100 | bench2csv > results/bench_22.csv
+
+  run21:
+    cmds:
+      - go run cmd.go
+
+  run22:
+    env:
+      GOEXPERIMENT: loopvar
+    cmds:
+      - go run cmd.go
