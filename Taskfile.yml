@@ -2,18 +2,21 @@
 
 version: '3'
 
+vars:
+  count: 10
+
 tasks:
   bench21:
     cmds:
       - mkdir results || true
-      - go test -bench=. -count=100 | bench2csv > results/bench_21.csv
+      - go test -bench=. -benchmem -count={{.count}} | testanalyzer > results/bench_21.txt
 
   bench22:
     env:
       GOEXPERIMENT: loopvar
     cmds:
       - mkdir results || true
-      - go test -bench=. -count=100 | bench2csv > results/bench_22.csv
+      - go test -bench=. -benchmem -count={{.count}} | testanalyzer > results/bench_22.txt
 
   run21:
     cmds:
