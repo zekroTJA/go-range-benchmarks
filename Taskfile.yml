@@ -6,6 +6,11 @@ vars:
   count: 10
 
 tasks:
+  bench:
+    cmds:
+      - task: bench21
+      - task: bench22
+
   bench21:
     cmds:
       - mkdir results || true
@@ -27,3 +32,4 @@ tasks:
       GOEXPERIMENT: loopvar
     cmds:
       - go run cmd.go
+
