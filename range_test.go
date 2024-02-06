@@ -21,11 +21,11 @@ func BenchmarkIntsRef(b *testing.B) {
 	}
 }
 
-func BenchmarkIntsClosures(b *testing.B) {
+func BenchmarkIntsClojures(b *testing.B) {
 	s := genSlice(100_000, func(i int) int { return i })
 
 	for i := 0; i < b.N; i++ {
-		IntsClosures(s)
+		IntsClojures(s)
 	}
 }
 
