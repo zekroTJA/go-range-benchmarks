@@ -5,8 +5,10 @@ import (
 	"testing"
 )
 
+const S = 10_000
+
 func BenchmarkInts(b *testing.B) {
-	s := genSlice(100_000, func(i int) int { return i })
+	s := genSlice(S, func(i int) int { return i })
 
 	for i := 0; i < b.N; i++ {
 		Ints(s)
@@ -14,7 +16,7 @@ func BenchmarkInts(b *testing.B) {
 }
 
 func BenchmarkIntsRef(b *testing.B) {
-	s := genSlice(100_000, func(i int) int { return i })
+	s := genSlice(S, func(i int) int { return i })
 
 	for i := 0; i < b.N; i++ {
 		IntsRef(s)
@@ -22,7 +24,7 @@ func BenchmarkIntsRef(b *testing.B) {
 }
 
 func BenchmarkIntsClojures(b *testing.B) {
-	s := genSlice(100_000, func(i int) int { return i })
+	s := genSlice(S, func(i int) int { return i })
 
 	for i := 0; i < b.N; i++ {
 		IntsClojures(s)
@@ -30,7 +32,7 @@ func BenchmarkIntsClojures(b *testing.B) {
 }
 
 func BenchmarkStrings(b *testing.B) {
-	s := genSlice(100_000, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
+	s := genSlice(S, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
 
 	for i := 0; i < b.N; i++ {
 		Strings(s)
@@ -38,7 +40,7 @@ func BenchmarkStrings(b *testing.B) {
 }
 
 func BenchmarkStringsRef(b *testing.B) {
-	s := genSlice(100_000, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
+	s := genSlice(S, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
 
 	for i := 0; i < b.N; i++ {
 		StringsRef(s)
@@ -46,7 +48,7 @@ func BenchmarkStringsRef(b *testing.B) {
 }
 
 func BenchmarkStringsClojures(b *testing.B) {
-	s := genSlice(100_000, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
+	s := genSlice(S, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
 
 	for i := 0; i < b.N; i++ {
 		StringsClosures(s)
@@ -54,7 +56,7 @@ func BenchmarkStringsClojures(b *testing.B) {
 }
 
 func BenchmarkStructs(b *testing.B) {
-	s := genSlice(100_000, func(i int) LargeStruct { return LargeStruct{} })
+	s := genSlice(S, func(i int) LargeStruct { return LargeStruct{} })
 
 	for i := 0; i < b.N; i++ {
 		Structs(s)
@@ -62,7 +64,7 @@ func BenchmarkStructs(b *testing.B) {
 }
 
 func BenchmarkStructsRef(b *testing.B) {
-	s := genSlice(100_000, func(i int) LargeStruct { return LargeStruct{} })
+	s := genSlice(S, func(i int) LargeStruct { return LargeStruct{} })
 
 	for i := 0; i < b.N; i++ {
 		StructsRef(s)
@@ -70,7 +72,7 @@ func BenchmarkStructsRef(b *testing.B) {
 }
 
 func BenchmarkStructsClojures(b *testing.B) {
-	s := genSlice(100_000, func(i int) LargeStruct { return LargeStruct{} })
+	s := genSlice(S, func(i int) LargeStruct { return LargeStruct{} })
 
 	for i := 0; i < b.N; i++ {
 		StructsClosures(s)

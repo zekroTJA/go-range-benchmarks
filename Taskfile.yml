@@ -3,7 +3,7 @@
 version: "3"
 
 vars:
-  count: 100
+  count: 30
 
 tasks:
   bench:
