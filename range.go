@@ -1,25 +1,93 @@
 package main
 
-func SimpleSum(s []int) (sum int) {
-	for _, v := range s {
-		sum += v
-	}
+import "sync"
 
-	return sum
+func Ints(s []int) {
+	var c int
+	for _, v := range s {
+		c = v
+	}
+	_ = c
 }
 
-func Strings(s []string) (sum int) {
+func IntsRef(s []int) {
+	var c *int
 	for _, v := range s {
-		sum += len(v)
+		c = &v
 	}
-
-	return sum
+	_ = c
 }
 
-func Struct(s []LargeStruct) (sum int64) {
+func IntsClosures(s []int) {
+	var c int
+	var wg sync.WaitGroup
+	wg.Add(len(s))
 	for _, v := range s {
-		sum += v.F0 + v.F10 + v.F50
+		go func() {
+			c = v
+			wg.Done()
+		}()
 	}
+	wg.Wait()
+	_ = c
+}
 
-	return sum
+func Strings(s []string) {
+	var c string
+	for _, v := range s {
+		c = v
+	}
+	_ = c
+}
+
+func StringsRef(s []string) {
+	var c *string
+	for _, v := range s {
+		c = &v
+	}
+	_ = c
+}
+
+func StringsClosures(s []string) {
+	var c string
+	var wg sync.WaitGroup
+	wg.Add(len(s))
+	for _, v := range s {
+		go func() {
+			c = v
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	_ = c
+}
+
+func Structs(s []LargeStruct) {
+	var c LargeStruct
+	for _, v := range s {
+		c = v
+	}
+	_ = c
+}
+
+func StructsRef(s []LargeStruct) {
+	var c *LargeStruct
+	for _, v := range s {
+		c = &v
+	}
+	_ = c
+}
+
+func StructsClosures(s []LargeStruct) {
+	var c LargeStruct
+	var wg sync.WaitGroup
+	wg.Add(len(s))
+	for _, v := range s {
+		go func() {
+			c = v
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	_ = c
 }

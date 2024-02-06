@@ -5,11 +5,27 @@ import (
 	"testing"
 )
 
-func BenchmarkSimpleSum(b *testing.B) {
+func BenchmarkInts(b *testing.B) {
 	s := genSlice(100_000, func(i int) int { return i })
 
 	for i := 0; i < b.N; i++ {
-		SimpleSum(s)
+		Ints(s)
+	}
+}
+
+func BenchmarkIntsRef(b *testing.B) {
+	s := genSlice(100_000, func(i int) int { return i })
+
+	for i := 0; i < b.N; i++ {
+		IntsRef(s)
+	}
+}
+
+func BenchmarkIntsClosures(b *testing.B) {
+	s := genSlice(100_000, func(i int) int { return i })
+
+	for i := 0; i < b.N; i++ {
+		IntsClosures(s)
 	}
 }
 
@@ -21,11 +37,43 @@ func BenchmarkStrings(b *testing.B) {
 	}
 }
 
-func BenchmarkStruct(b *testing.B) {
+func BenchmarkStringsRef(b *testing.B) {
+	s := genSlice(100_000, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
+
+	for i := 0; i < b.N; i++ {
+		StringsRef(s)
+	}
+}
+
+func BenchmarkStringsClojures(b *testing.B) {
+	s := genSlice(100_000, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
+
+	for i := 0; i < b.N; i++ {
+		StringsClosures(s)
+	}
+}
+
+func BenchmarkStructs(b *testing.B) {
 	s := genSlice(100_000, func(i int) LargeStruct { return LargeStruct{} })
 
 	for i := 0; i < b.N; i++ {
-		Struct(s)
+		Structs(s)
+	}
+}
+
+func BenchmarkStructsRef(b *testing.B) {
+	s := genSlice(100_000, func(i int) LargeStruct { return LargeStruct{} })
+
+	for i := 0; i < b.N; i++ {
+		StructsRef(s)
+	}
+}
+
+func BenchmarkStructsClojures(b *testing.B) {
+	s := genSlice(100_000, func(i int) LargeStruct { return LargeStruct{} })
+
+	for i := 0; i < b.N; i++ {
+		StructsClosures(s)
 	}
 }
 

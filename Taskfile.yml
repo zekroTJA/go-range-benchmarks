@@ -14,14 +14,14 @@ tasks:
   bench21:
     cmds:
       - mkdir results || true
-      - go test -bench=. -benchmem -count={{.count}} | testanalyzer > results/bench_21.txt
+      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > results/bench_21.csv
 
   bench22:
     env:
       GOEXPERIMENT: loopvar
     cmds:
       - mkdir results || true
-      - go test -bench=. -benchmem -count={{.count}} | testanalyzer > results/bench_22.txt
+      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > results/bench_22.csv
 
   run21:
     cmds:
