@@ -1,9 +1,9 @@
 # https://taskfile.dev
 
-version: '3'
+version: "3"
 
 vars:
-  count: 10
+  count: 100
 
 tasks:
   bench:
@@ -12,24 +12,27 @@ tasks:
       - task: bench22
 
   bench21:
+    dir: src
     cmds:
-      - mkdir results || true
-      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > results/bench_21.csv
+      - mkdir ../results || true
+      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > ../results/bench_21.csv
 
   bench22:
+    dir: src
     env:
       GOEXPERIMENT: loopvar
     cmds:
-      - mkdir results || true
-      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > results/bench_22.csv
+      - mkdir ../results || true
+      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > ../results/bench_22.csv
 
   run21:
+    dir: src
     cmds:
       - go run cmd.go
 
   run22:
+    dir: src
     env:
       GOEXPERIMENT: loopvar
     cmds:
       - go run cmd.go
-
