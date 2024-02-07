@@ -14,6 +14,8 @@ tasks:
   bench21:
     dir: src
     cmds:
+      - goup use 1.21.7
+      - go version | grep '^go version go1.21.7 '
       - mkdir ../results || true
       - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > ../results/bench_21.csv
 
@@ -22,6 +24,8 @@ tasks:
     env:
       GOEXPERIMENT: loopvar
     cmds:
+      - goup use 1.22.0
+      - go version | grep '^go version go1.22.0 '
       - mkdir ../results || true
       - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > ../results/bench_22.csv
 
