@@ -3,7 +3,7 @@
 version: "3"
 
 vars:
-  count: 30
+  count: 50
 
 tasks:
   bench:
@@ -16,8 +16,9 @@ tasks:
     cmds:
       - goup use 1.21.7
       - go version | grep '^go version go1.21.7 '
-      - mkdir ../results || true
-      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > ../results/bench_21.csv
+      - mkdir -p ../results/21 || true
+      - go test -bench=. -benchmem -count={{.count}} > ../results/21/raw.txt
+      - testanalyzer ../results/21/raw.txt --csv > ../results/21/summary.csv
 
   bench22:
     dir: src
@@ -26,8 +27,9 @@ tasks:
     cmds:
       - goup use 1.22.0
       - go version | grep '^go version go1.22.0 '
-      - mkdir ../results || true
-      - go test -bench=. -benchmem -count={{.count}} | testanalyzer --csv > ../results/bench_22.csv
+      - mkdir -p ../results/22 || true
+      - go test -bench=. -benchmem -count={{.count}} > ../results/22/raw.txt
+      - testanalyzer ../results/22/raw.txt --csv > ../results/22/summary.csv
 
   run21:
     dir: src
