@@ -18,7 +18,7 @@ func IntsRef(s []int) {
 	_ = c
 }
 
-func IntsClojures(s []int) {
+func IntsClosures(s []int) {
 	var c int
 	var wg sync.WaitGroup
 	wg.Add(len(s))

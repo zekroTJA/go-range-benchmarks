@@ -23,11 +23,11 @@ func BenchmarkIntsRef(b *testing.B) {
 	}
 }
 
-func BenchmarkIntsClojures(b *testing.B) {
+func BenchmarkIntsClosures(b *testing.B) {
 	s := genSlice(S, func(i int) int { return i })
 
 	for i := 0; i < b.N; i++ {
-		IntsClojures(s)
+		IntsClosures(s)
 	}
 }
 
@@ -47,7 +47,7 @@ func BenchmarkStringsRef(b *testing.B) {
 	}
 }
 
-func BenchmarkStringsClojures(b *testing.B) {
+func BenchmarkStringsClosures(b *testing.B) {
 	s := genSlice(S, func(i int) string { return fmt.Sprintf(" foo bar baz %d ", i) })
 
 	for i := 0; i < b.N; i++ {
@@ -71,7 +71,7 @@ func BenchmarkStructsRef(b *testing.B) {
 	}
 }
 
-func BenchmarkStructsClojures(b *testing.B) {
+func BenchmarkStructsClosures(b *testing.B) {
 	s := genSlice(S, func(i int) LargeStruct { return LargeStruct{} })
 
 	for i := 0; i < b.N; i++ {
