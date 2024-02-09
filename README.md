@@ -10,3 +10,6 @@ The [notebook](notebook.ipynb) contains some graphs and stats of the analyzed da
 
 If you want to go more in depth, I've written a [blog post](https://blog.zekro.de/how-the-new-loops-in-go-might-be-a-performance-trap) about this topic.
 
+If you want to run the tests yourself, you need to install the following both tools:
+- [task](https://taskfile.dev) - Task runner tool to simplify test execution
+- [testanalyzer](https://github.com/zekroTJA/testanalyzer/) - A cli tool I've written to statistically analyze Go benchmark output
